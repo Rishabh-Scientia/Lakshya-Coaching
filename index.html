@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lakshya Institute - Your Path to Success</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons for clean, modern icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1f2937;
+            background-color: #f9fafb;
+        }
+        /* Custom gradient for a lively student-friendly look */
+        .cta-gradient-bg {
+            background-image: linear-gradient(to right, #f97316, #ef4444); /* Orange to Red for high visibility */
+            transition: all 0.3s ease;
+        }
+        .cta-gradient-bg:hover {
+            background-image: linear-gradient(to right, #ea580c, #dc2626);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px rgba(249, 115, 22, 0.4);
+        }
+        .main-button {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .feature-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 20px rgba(63, 63, 245, 0.1);
+            border-color: #4f46e5;
+        }
+        .text-indigo-glow {
+            text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Custom Modal for Alerts (Replaces alert()) -->
+    <div id="statusModal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-70 flex items-center justify-center p-4 z-50 transition-opacity duration-300">
+        <div class="bg-white p-8 rounded-xl shadow-2xl max-w-sm w-full text-center border-t-4 border-orange-500 animate-fade-in">
+            <i data-lucide="check-circle" class="w-12 h-12 mx-auto text-green-500 mb-4"></i>
+            <h5 id="modalTitle" class="text-2xl font-bold mb-3 text-gray-900">Enrollment Submitted!</h5>
+            <p id="modalMessage" class="text-gray-700 mb-6">Thank you for your interest in Lakshya Institute. We will contact you shortly.</p>
+            <button onclick="document.getElementById('statusModal').classList.add('hidden')" class="bg-indigo-600 text-white py-2 px-4 rounded-lg font-semibold hover:bg-indigo-700 transition">Close</button>
+        </div>
+    </div>
+
+    <!-- 1. Header & Navigation -->
+    <header id="header" class="sticky top-0 z-40 bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            
+            <!-- Logo & Tagline -->
+            <div class="flex flex-col">
+                <a href="#home" class="text-3xl font-extrabold text-indigo-600 tracking-tight">
+                    Lakshya
+                </a>
+                <p class="text-xs font-semibold text-orange-500 italic">अब नए अंदाज़ में</p>
+            </div>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden lg:flex space-x-6 items-center">
+                <a href="#home" class="text-gray-700 hover:text-indigo-600 font-medium transition">Home</a>
+                <a href="#about" class="text-gray-700 hover:text-indigo-600 font-medium transition">About Us</a>
+                <a href="#courses" class="text-gray-700 hover:text-indigo-600 font-medium transition">Courses</a>
+                <a href="#facilities" class="text-gray-700 hover:text-indigo-600 font-medium transition">Facilities</a>
+                <a href="#why-choose-us" class="text-gray-700 hover:text-indigo-600 font-medium transition">Why Choose Us</a>
+                <a href="#admission" class="text-gray-700 hover:text-indigo-600 font-medium transition">Admissions</a>
+                <a href="#contact" class="text-gray-700 hover:text-indigo-600 font-medium transition">Contact</a>
+                
+                <!-- CTA Button -->
+                <a href="#admission" class="main-button cta-gradient-bg text-white px-5 py-2 rounded-full font-bold shadow-md hover:scale-105">
+                    Enroll Now
+                </a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="lg:hidden p-2 text-indigo-600 rounded-lg hover:bg-indigo-50">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="lg:hidden hidden px-4 pt-2 pb-4 space-y-2 bg-white border-t border-gray-100">
+            <a href="#home" class="block py-2 text-gray-700 hover:text-indigo-600 transition font-medium">Home</a>
+            <a href="#about" class="block py-2 text-gray-700 hover:text-indigo-600 transition font-medium">About Us</a>
+            <a href="#courses" class="block py-2 text-gray-700 hover:text-indigo-600 transition font-medium">Courses</a>
+            <a href="#facilities" class="block py-2 text-gray-700 hover:text-indigo-600 transition font-medium">Facilities</a>
+            <a href="#why-choose-us" class="block py-2 text-gray-700 hover:text-indigo-600 transition font-medium">Why Choose Us</a>
+            <a href="#admission" class="block py-2 text-gray-700 hover:text-indigo-600 transition font-medium">Admissions</a>
+            <a href="#contact" class="block py-2 text-gray-700 hover:text-indigo-600 transition font-medium">Contact</a>
+            <a href="#admission" class="block text-center mt-4 main-button cta-gradient-bg text-white px-6 py-2 rounded-full font-bold">Enroll Now</a>
+        </div>
+    </header>
+
+    <!-- 2. Hero Section (Top Banner) -->
+    <section id="home" class="pt-16 pb-24 bg-indigo-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
+            
+            <!-- Text Content -->
+            <div class="space-y-6 text-center lg:text-left">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight text-gray-900">
+                    Your <span class="text-indigo-600">Lakshya</span>, Our Guidance. Achieve Excellence.
+                </h1>
+                
+                <!-- Discount Banner -->
+                <div class="bg-orange-500 text-white p-4 rounded-xl shadow-xl transform rotate-1 transition duration-500 hover:rotate-0 hover:scale-[1.03] inline-block">
+                    <p class="text-xl sm:text-2xl font-extrabold tracking-wide">
+                        New Session Admissions Open – Get <span class="underline">10% Discount</span> for First 50 Students!
+                    </p>
+                </div>
+                
+                <p class="text-xl text-gray-600 max-w-xl mx-auto lg:mx-0 pt-4">
+                    Unlock your potential with dedicated coaching for CBSE, JEE, NEET, and more.
+                </p>
+
+                <!-- CTA Button -->
+                <a href="#admission" class="main-button cta-gradient-bg inline-flex items-center text-white px-8 py-4 text-xl rounded-xl font-bold shadow-2xl hover:scale-105">
+                    Enroll Now
+                    <i data-lucide="arrow-right" class="w-6 h-6 ml-3"></i>
+                </a>
+            </div>
+            
+            <!-- Student Illustration (Image Placeholder) -->
+            <div class="flex justify-center lg:justify-end">
+                <img src="WhatsApp Image 2025-09-27 at 21.59.11_c57ada14.jpg" 
+                     alt="Dedicated Students Illustration" 
+                     class="w-full max-w-md h-auto rounded-3xl shadow-2xl border-4 border-white transition duration-500 transform hover:scale-[1.02] object-cover"
+                     onerror="this.onerror=null; this.src='https://placehold.co/500x350/374151/ffffff?text=Student+Success+Image';"
+                >
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. About Us / Introduction Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            
+            <div class="inline-block bg-indigo-100 text-indigo-600 px-4 py-1 rounded-full text-sm font-semibold mb-3">About Us</div>
+            <h2 class="text-4xl font-bold text-gray-900 mb-6">3 Years of Excellence in Education</h2>
+            
+            <p class="text-xl text-gray-600 max-w-4xl mx-auto mb-10">
+                Lakshya Institute was **established in 2022** with a clear commitment to providing high-quality, outcome-based education. For three successful years, we have blended dedicated mentorship with modern learning tools to shape the future of our students.
+            </p>
+
+            <div class="bg-green-100 p-8 rounded-2xl shadow-lg border-l-8 border-green-500 inline-block max-w-3xl">
+                <i data-lucide="book-open-check" class="w-10 h-10 text-green-600 mx-auto mb-4"></i>
+                <h3 class="text-2xl font-extrabold text-green-700">Our Vision</h3>
+                <p class="text-2xl font-semibold text-gray-800 mt-2">
+                    "संघर्ष से सफलता तक का सफर, <span class="text-orange-600">आपके साथ!</span>"
+                </p>
+            </div>
+
+        </div>
+    </section>
+    
+    <!-- 4. Facilities Section -->
+    <section id="facilities" class="py-20 bg-indigo-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center text-gray-900 mb-16">World-Class Facilities for Better Learning</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Card 1: Faculty -->
+                <div class="feature-card p-6 bg-white rounded-xl shadow-xl text-center border-t-4 border-indigo-600 transition duration-300">
+                    <i data-lucide="users" class="w-10 h-10 text-indigo-600 mx-auto mb-4 transition transform group-hover:scale-110"></i>
+                    <h3 class="text-xl font-bold mb-2">Experienced & Dedicated Faculty</h3>
+                    <p class="text-gray-600">Learn from top educators who are passionate about teaching and student success.</p>
+                </div>
+
+                <!-- Card 2: Personalized Attention -->
+                <div class="feature-card p-6 bg-white rounded-xl shadow-xl text-center border-t-4 border-green-500 transition duration-300">
+                    <i data-lucide="award" class="w-10 h-10 text-green-600 mx-auto mb-4 transition transform group-hover:scale-110"></i>
+                    <h3 class="text-xl font-bold mb-2">Personalized Attention & Doubt Solving</h3>
+                    <p class="text-gray-600">Small batch sizes ensure every student receives focused guidance and timely doubt resolution.</p>
+                </div>
+
+                <!-- Card 3: Tests & Analysis -->
+                <div class="feature-card p-6 bg-white rounded-xl shadow-xl text-center border-t-4 border-orange-500 transition duration-300">
+                    <i data-lucide="clipboard-list" class="w-10 h-10 text-orange-600 mx-auto mb-4 transition transform group-hover:scale-110"></i>
+                    <h3 class="text-xl font-bold mb-2">Weekly Tests & Performance Analysis</h3>
+                    <p class="text-gray-600">Systematic testing and in-depth analysis to track progress and identify weak areas.</p>
+                </div>
+
+                <!-- Card 4: Classrooms -->
+                <div class="feature-card p-6 bg-white rounded-xl shadow-xl text-center border-t-4 border-indigo-600 transition duration-300">
+                    <i data-lucide="monitor" class="w-10 h-10 text-indigo-600 mx-auto mb-4 transition transform group-hover:scale-110"></i>
+                    <h3 class="text-xl font-bold mb-2">Well-Furnished Classrooms</h3>
+                    <p class="text-gray-600">Modern, zero-noise learning environment conducive to deep concentration and study.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Why Choose Us Section -->
+    <section id="why-choose-us" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center text-gray-900 mb-16">Why Lakshya is Your Best Choice</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Feature 1: DPP & Tests -->
+                <div class="p-6 bg-indigo-50 rounded-xl shadow-md border-b-4 border-indigo-600 hover:shadow-lg transition duration-300">
+                    <i data-lucide="list-checks" class="w-8 h-8 text-indigo-600 mb-3"></i>
+                    <h3 class="text-xl font-bold mb-2">Weekly DPP & Tests</h3>
+                    <p class="text-gray-700 text-sm">Daily Practice Problems and regular tests ensure strong foundational knowledge.</p>
+                </div>
+
+                <!-- Feature 2: Doubt Forum -->
+                <div class="p-6 bg-green-50 rounded-xl shadow-md border-b-4 border-green-600 hover:shadow-lg transition duration-300">
+                    <i data-lucide="message-square-text" class="w-8 h-8 text-green-600 mb-3"></i>
+                    <h3 class="text-xl font-bold mb-2">24×7 Doubt Forum</h3>
+                    <p class="text-gray-700 text-sm">Access to our dedicated online forum to solve doubts instantly, anytime, anywhere.</p>
+                </div>
+
+                <!-- Feature 3: Progress Report -->
+                <div class="p-6 bg-orange-50 rounded-xl shadow-md border-b-4 border-orange-600 hover:shadow-lg transition duration-300">
+                    <i data-lucide="bar-chart-3" class="w-8 h-8 text-orange-600 mb-3"></i>
+                    <h3 class="text-xl font-bold mb-2">Monthly Progress Report Kit</h3>
+                    <p class="text-gray-700 text-sm">Detailed goal tracking, personalized insights, and exclusive goodies to keep motivation high.</p>
+                </div>
+
+                <!-- Feature 4: Guarantee -->
+                <div class="p-6 bg-indigo-50 rounded-xl shadow-md border-b-4 border-indigo-600 hover:shadow-lg transition duration-300">
+                    <i data-lucide="shield-check" class="w-8 h-8 text-indigo-600 mb-3"></i>
+                    <h3 class="text-xl font-bold mb-2">100% Satisfaction Guarantee</h3>
+                    <p class="text-gray-700 text-sm">Confident in our quality—full refund policy within the first 60 days if unsatisfied.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 6. Courses Section -->
+    <section id="courses" class="py-20 bg-indigo-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center text-gray-900 mb-12">Our Specialized Batches</h2>
+            <p class="text-xl text-center text-gray-600 mb-16 max-w-3xl mx-auto">
+                We offer targeted programs designed to maximize performance at every academic stage.
+            </p>
+
+            <!-- Course Cards -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                
+                <!-- Batch 1: रणनीति बैच -->
+                <div class="p-6 bg-white rounded-xl shadow-xl hover:shadow-2xl transition duration-300 border-t-4 border-green-500">
+                    <span class="text-sm font-bold text-green-600 bg-green-100 px-3 py-1 rounded-full mb-3 inline-block">Foundation</span>
+                    <h3 class="text-2xl font-extrabold text-indigo-700 mb-2">रणनिति बैच</h3>
+                    <p class="text-gray-500 mb-4">Class: 6th – 8th</p>
+                    <p class="font-semibold text-gray-700">All Subjects | Strong Foundation Building</p>
+                </div>
+
+                <!-- Batch 2: संकल्प बैच -->
+                <div class="p-6 bg-white rounded-xl shadow-xl hover:shadow-2xl transition duration-300 border-t-4 border-orange-500">
+                    <span class="text-sm font-bold text-orange-600 bg-orange-100 px-3 py-1 rounded-full mb-3 inline-block">Board Prep</span>
+                    <h3 class="text-2xl font-extrabold text-indigo-700 mb-2">संकल्प बैच</h3>
+                    <p class="text-gray-500 mb-4">Class: 9th</p>
+                    <p class="font-semibold text-gray-700">Maths | Science | English Focus</p>
+                </div>
+
+                <!-- Batch 3: विजयपथ बैच -->
+                <div class="p-6 bg-white rounded-xl shadow-xl hover:shadow-2xl transition duration-300 border-t-4 border-indigo-600">
+                    <span class="text-sm font-bold text-indigo-600 bg-indigo-100 px-3 py-1 rounded-full mb-3 inline-block">Board Prep</span>
+                    <h3 class="text-2xl font-extrabold text-indigo-700 mb-2">विजयपथ बैच</h3>
+                    <p class="text-gray-500 mb-4">Class: 10th</p>
+                    <p class="font-semibold text-gray-700">Maths | Science | English Focus</p>
+                </div>
+
+                <!-- Batch 4: रणभूमि बैच -->
+                <div class="p-6 bg-white rounded-xl shadow-xl hover:shadow-2xl transition duration-300 border-t-4 border-red-500">
+                    <span class="text-sm font-bold text-red-600 bg-red-100 px-3 py-1 rounded-full mb-3 inline-block">Competitive</span>
+                    <h3 class="text-2xl font-extrabold text-indigo-700 mb-2">रणभूमि बैच</h3>
+                    <p class="text-gray-500 mb-4">Class: 11th – 12th</p>
+                    <p class="font-semibold text-gray-700">CBSE | JEE | NEET | NDA Coaching</p>
+                </div>
+            </div>
+            
+            <!-- Exam Coverage List -->
+            <div class="text-center bg-white p-10 rounded-2xl shadow-xl border-b-8 border-orange-500">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6">We Cover All Major Examinations</h3>
+                <div class="flex flex-wrap justify-center gap-4 text-lg font-medium">
+                    <span class="bg-indigo-100 text-indigo-700 px-4 py-2 rounded-full shadow-md">CBSE</span>
+                    <span class="bg-green-100 text-green-700 px-4 py-2 rounded-full shadow-md">ICSE</span>
+                    <span class="bg-orange-100 text-orange-700 px-4 py-2 rounded-full shadow-md">JEE (Main & Advanced)</span>
+                    <span class="bg-indigo-100 text-indigo-700 px-4 py-2 rounded-full shadow-md">NEET</span>
+                    <span class="bg-green-100 text-green-700 px-4 py-2 rounded-full shadow-md">NDA</span>
+                    <span class="bg-orange-100 text-orange-700 px-4 py-2 rounded-full shadow-md">Olympiads</span>
+                    <span class="bg-indigo-100 text-indigo-700 px-4 py-2 rounded-full shadow-md">KVPY</span>
+                    <span class="bg-green-100 text-green-700 px-4 py-2 rounded-full shadow-md">IMO</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Admission Section -->
+    <section id="admission" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center">
+            
+            <!-- Left Side: Session Details -->
+            <div class="space-y-6">
+                <div class="inline-block bg-orange-500 text-white px-4 py-1 rounded-full text-sm font-semibold mb-3 shadow-lg">Admissions Open</div>
+                <h2 class="text-4xl font-bold text-gray-900 leading-tight">Secure Your Seat for the Upcoming Session</h2>
+                
+                <p class="text-xl text-gray-600">
+                    The new academic session begins on:
+                </p>
+                
+                <div class="text-5xl font-extrabold text-orange-600 bg-orange-50 p-6 rounded-xl shadow-lg border-l-8 border-orange-600 inline-block tracking-wider">
+                    October 1st
+                </div>
+
+                <p class="text-lg text-gray-700 pt-4">
+                    Spaces are limited! Complete the quick form now to secure your spot and guarantee the early bird discount.
+                </p>
+            </div>
+            
+            <!-- Right Side: Enrollment Form -->
+            <div class="bg-indigo-50 p-8 sm:p-10 rounded-2xl shadow-2xl">
+                <h3 class="text-3xl font-bold text-indigo-700 mb-6 text-center">Enrollment Request</h3>
+                <form id="enrollment-form" class="space-y-4">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                        <input type="text" id="name" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                    </div>
+                    
+                    <div>
+                        <label for="class" class="block text-sm font-medium text-gray-700 mb-1">Current Class (e.g., 9th)</label>
+                        <input type="text" id="class" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                    </div>
+
+                    <div>
+                        <label for="course" class="block text-sm font-medium text-gray-700 mb-1">Preferred Course/Batch</label>
+                        <select id="course" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 bg-white">
+                            <option value="">Select a Course</option>
+                            <option value="Ranniti">रणनिति बैच (6th – 8th)</option>
+                            <option value="Sankalp">संकल्प बैच (9th)</option>
+                            <option value="Vijaypath">विजयपथ बैच (10th)</option>
+                            <option value="Ranbhumi">रणभूमि बैच (11th – 12th)</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="contact" class="block text-sm font-medium text-gray-700 mb-1">Contact Number</label>
+                        <input type="tel" id="contact" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                    </div>
+
+                    <button type="submit" class="w-full main-button cta-gradient-bg text-white px-6 py-3 rounded-lg font-bold shadow-xl hover:scale-[1.01] mt-6">
+                        Submit Enrollment Request
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 8. Testimonials / Achievements Section -->
+    <section id="reviews" class="py-20 bg-indigo-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-bold text-gray-900 mb-16">Our Success Stories & Achievements</h2>
+            
+            <div class="grid lg:grid-cols-3 gap-8 mb-12">
+                
+                <!-- Review 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-green-500">
+                    <div class="flex justify-center text-yellow-500 mb-4">
+                        <i data-lucide="star" class="w-5 h-5 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-yellow-500"></i>
+                        <i data-lucide="star-half" class="w-5 h-5 fill-yellow-500"></i>
+                    </div>
+                    <p class="text-gray-700 italic mb-6">"I secured 98% in CBSE 10th grade thanks to the focused guidance and weekly tests. Lakshya makes learning effective!"</p>
+                    <p class="font-bold text-gray-900">Anjali Singh</p>
+                    <p class="text-sm text-gray-500">Class 10th Topper (2024)</p>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-orange-500">
+                    <div class="flex justify-center text-yellow-500 mb-4">
+                        <i data-lucide="star" class="w-5 h-5 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-yellow-500"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-yellow-500"></i>
+                    </div>
+                    <p class="text-gray-700 italic mb-6">"The 24x7 doubt forum is a lifesaver. Personalized attention helped me crack the initial JEE screening tests."</p>
+                    <p class="font-bold text-gray-900">Rohit Verma</p>
+                    <p class="text-sm text-gray-500">JEE Aspirant</p>
+                </div>
+                
+                <!-- Achievement Badge -->
+                <div class="bg-indigo-700 p-8 rounded-2xl shadow-2xl text-white flex flex-col justify-center items-center">
+                    <i data-lucide="trophy" class="w-16 h-16 text-yellow-400 mb-3 animate-bounce"></i>
+                    <h3 class="text-4xl font-black mb-1">3+</h3>
+                    <p class="text-xl font-semibold">Years of Excellence</p>
+                    <div class="mt-4 flex space-x-1 text-yellow-400">
+                        <i data-lucide="star" class="w-5 h-5 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-yellow-400"></i>
+                        <i data-lucide="star" class="w-5 h-5 fill-yellow-400"></i>
+                        <span class="text-sm ml-2 text-white">(4.9 Avg Rating)</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center text-gray-900 mb-16">Connect With Us</h2>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                
+                <!-- Contact Details -->
+                <div class="space-y-8 p-8 bg-indigo-50 rounded-2xl shadow-xl">
+                    <h3 class="text-2xl font-bold text-indigo-700 mb-4">Get in Touch</h3>
+                    
+                    <!-- Address -->
+                    <div class="flex items-start space-x-4">
+                        <i data-lucide="map-pin" class="w-8 h-8 text-orange-600 flex-shrink-0"></i>
+                        <div>
+                            <p class="font-semibold text-gray-900">Our Location</p>
+                            <p class="text-gray-700">Near Greenfield Vidya Niketan School, Sector 49 (Barola), Noida</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Phone 1 -->
+                    <div class="flex items-start space-x-4">
+                        <i data-lucide="phone" class="w-8 h-8 text-green-600 flex-shrink-0"></i>
+                        <div>
+                            <p class="font-semibold text-gray-900">Contact Numbers</p>
+                            <a href="tel:+919971877278" class="text-gray-700 hover:text-green-600 block">+91-99718 77278</a>
+                            <a href="tel:+919756625622" class="text-gray-700 hover:text-green-600 block">+91-97566 25622</a>
+                        </div>
+                    </div>
+                    
+                    <!-- WhatsApp Button -->
+                    <a href="https://wa.me/919971877278" target="_blank" class="main-button bg-green-500 text-white px-6 py-3 rounded-full font-bold inline-flex items-center hover:bg-green-600 shadow-md hover:scale-[1.02]">
+                        <i data-lucide="message-circle" class="w-5 h-5 mr-2 fill-white"></i> Quick WhatsApp Inquiry
+                    </a>
+                </div>
+                
+                <!-- Google Maps Embed (Placeholder for Canvas Environment) -->
+                <div class="rounded-2xl shadow-2xl overflow-hidden">
+                    <h3 class="text-2xl font-bold text-gray-900 p-4 bg-gray-100 border-b">Find Us Easily</h3>
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3503.743813337965!2d77.36015567540243!3d28.57790838644599!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd2d7c5b6b63%3A0x2a0c2c31e7f3a8b4!2sGreenfield%20Vidya%20Niketan%20School%2C%20Sector%2049%20(Barola)%2C%20Noida!5e0!3m2!1sen!2sin!4v1678886400000" 
+                        width="100%" 
+                        height="450" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        class="border-none"
+                        title="Google Maps Location for Lakshya Institute"
+                    ></iframe>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-5 gap-10 border-b border-gray-700 pb-8">
+                
+                <!-- Logo & Description -->
+                <div class="md:col-span-2 space-y-4">
+                    <a href="#home" class="text-3xl font-extrabold text-indigo-500 tracking-tight">Lakshya</a>
+                    <p class="text-sm font-semibold text-orange-400 italic">अब नए अंदाज़ में</p>
+                    <p class="text-gray-400 max-w-sm text-sm">Committed to turning every struggle into a success story for students across Noida.</p>
+                </div>
+                
+                <!-- Quick Links 1 -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-indigo-400">Navigation</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#home" class="hover:text-white transition">Home</a></li>
+                        <li><a href="#about" class="hover:text-white transition">About Us</a></li>
+                        <li><a href="#courses" class="hover:text-white transition">Courses</a></li>
+                        <li><a href="#facilities" class="hover:text-white transition">Facilities</a></li>
+                    </ul>
+                </div>
+
+                <!-- Quick Links 2 -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-indigo-400">Admissions</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#why-choose-us" class="hover:text-white transition">Why Choose Us</a></li>
+                        <li><a href="#admission" class="hover:text-white transition">Enroll Now</a></li>
+                        <li><a href="#contact" class="hover:text-white transition">Contact</a></li>
+                        <li><a href="#reviews" class="hover:text-white transition">Success Stories</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Social Media -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-indigo-400">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" aria-label="Facebook" class="p-2 rounded-full bg-gray-800 hover:bg-indigo-600 transition"><i data-lucide="facebook" class="w-5 h-5 fill-white"></i></a>
+                        <a href="#" aria-label="Instagram" class="p-2 rounded-full bg-gray-800 hover:bg-orange-600 transition"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                        <a href="#" aria-label="YouTube" class="p-2 rounded-full bg-gray-800 hover:bg-red-600 transition"><i data-lucide="youtube" class="w-5 h-5 fill-white"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="mt-8 text-center text-gray-500 text-sm">
+                &copy; 2025 Lakshya Institute. All rights reserved. Designed for Excellence.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // --- Mobile Menu Toggle ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.querySelectorAll('#mobile-menu a');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            // Toggle icon from menu to close
+            const icon = mobileMenuButton.querySelector('svg');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.setAttribute('data-lucide', 'menu');
+            } else {
+                icon.setAttribute('data-lucide', 'x');
+            }
+            lucide.createIcons(); // Re-render icon
+        });
+
+        // Hide mobile menu when a link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.querySelector('svg').setAttribute('data-lucide', 'menu');
+                lucide.createIcons();
+            });
+        });
+        
+        // --- Enrollment Form Submission (Uses Custom Modal) ---
+        document.getElementById('enrollment-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Collect form data (for simulation, you'd send this to a server/database)
+            const name = document.getElementById('name').value;
+            const className = document.getElementById('class').value;
+            const course = document.getElementById('course').value;
+            const contact = document.getElementById('contact').value;
+            
+            // Show custom success modal
+            const modal = document.getElementById('statusModal');
+            document.getElementById('modalTitle').textContent = "Enrollment Submitted!";
+            document.getElementById('modalMessage').innerHTML = `Thank you, **${name}**! Your request for the **${course}** batch (Class ${className}) has been received. We will call you on ${contact} shortly to confirm your early bird discount!`;
+            
+            // Reset form fields
+            this.reset();
+
+            // Show modal
+            modal.classList.remove('hidden');
+            
+            // Scroll to top of the modal for mobile visibility
+            modal.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // --- Smooth Scroll (Applied globally via CSS scroll-behavior: smooth, but this ensures navigation works) ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+    </script>
+</body>
+</html>
